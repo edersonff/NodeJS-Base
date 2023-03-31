@@ -16,3 +16,6 @@ Thumbs.db
 # Ignorar arquivos de configuração
 .env
 config.js
+
+# Ignorar Logs
+src/Logs/*.log
