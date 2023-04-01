@@ -66,13 +66,28 @@ Desafio proposto pela **Coodesh** como desafio do da empresa Grupo fácil(Tech C
 - [✖️] Configuração .env
 - [✖️] Criação de Entidade/Model Product
 - [✖️] Criação inicial das rotas principais
-- [⬛] Criação dos controllers principais(2)
-- [⬛] Criar tipos para entrada e saida das rotas
+- [✖️] Criação dos controllers principais(2)
+- [⬛] Criar tipos para entrada e saida das rotas (opcional)
 - [⬛] Alinhar projeto com documentação do Open Food Facts
-- [⬛] Importação de dados apartir da API
-- [⬛] Criação dos testes automatizados
+- [⬛] Importação de dados apartir da rota
+- [⬛] Descompatar e ler os arquivos limitando-os
+- [⬛] Sistema de falha do sync dos produtos (opcional)
+- [⬛] Criação dos testes automatizados (opcional)
 - [⬛] Utilização de Forms/Schemas
 - [⬛] Criação de Middlewares para tratar informações
-- [⬛] Criação de Parte Front-end -> Possibilidade de utilizar NextJS
+- [⬛] Criação de Parte Front-end -> Possibilidade de utilizar NextJS (opcional)
+- [⬛] Configuração do Docker (opcional)
+- [⬛] Documentação da api a partir do conceito Open API 3.0 (opcional)
+- [⬛] Testar fluxo para ver se está tudo certo 😋
+
+### Ideias _ou_ Hipóteses
+
+Tive alguns problemas pequenos para configurar Typescript no projeto inicialmente <br/>
+Estou com a ideia de utilizar .sqlite por questão de praticidade <br/>
+Utilizar o pacote dotenv para configurar as váriaveis de ambiente do projeto <br/>
+Alguns problemas para achar o folder correto do sqlite e dos logs mas foi tranquilo arrumar <br/>
+Tive alguns problemas para conectar o TypeORM mas agora está tudo funcionando <br/>
+Principalmente pelo formato do arquivo(.gz) imagino que precise ser descompactado e depois lido, por agora imagino que precisariamos utilizar a url https://challenges.coode.sh/food/data/json/{code} para os arquivos, não gostaria também de utilizar o arquivo index.txt dinamicamente(desnecessario para esse projeto). <br/>
+Estou tentando adiantar grande parte do projeto o quanto antes para não ter problemas com os adicionais(que eu gostaria de fazer)<br/>
 
 <p align="right">(<a href="#readme-top">Subir</a>)</p>
