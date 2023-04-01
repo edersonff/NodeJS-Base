@@ -1,21 +1,30 @@
-import express from "express";
-import winston from "winston";
+// Config .env
+import { config } from "dotenv";
+config();
 
-const {PORT, LOG_LEVEL, DEBUG} = process.env;
-// Logger
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
-  
+import express from "express";
+import logger from "./Logs/logger";
+import conn from "./DB/conn";
+import { router } from "./Routes/index.routes";
+
+const { PORT, DEBUG } = process.env;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(3000, () => {
-  if(DEBUG){
-    console.log("Server started on port 3000");
-  }
-});
+app.use("/api", router);
+
+conn
+  .then(async (connection) => {
+    // await connection.synchronize();
+    app.listen(PORT, () => {
+      if (DEBUG) {
+        logger.info("Server started on port 3000");
+      }
+    });
+  })
+  .catch((err) => {
+    logger.error(`Failed to connect to database: ${err}`);
+  });
