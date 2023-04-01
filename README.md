@@ -49,13 +49,12 @@ Desafio proposto pela **Coodesh** como desafio do da empresa Grupo fácil(Tech C
   Utilizado principalmente para avisar código mal formatado
 - **helmet**: Configurar os Headers da requisição
 - **jest**: Pacote utilizado para testes
-- **node-cron**: Utilizado para agendar tarefas
-- **sqlite3**: Banco utilizado nesse projeto. </br>
-  Seria mais uma forma de facilidade para testes, ideia futura é criar uma branch com configurações de outros bancos como exemplo
-- **typeorm**: Orm que foi utilizada no projeto.
-  Não sou tão familiarizado com essa ORM(apenas em projetos nestJS), por isso decidi utiliza-ló aqui.
-- **winston**: Utilizado para controle de Logs.
-  Não 100% necessário para o projeto, mas útil
+- **nodemon**: Utilizado para fazer o reload do projeto quando alterado
+- **prettier**: Formatação e organização de código
+- **rimraf**: Para fazer a build do projeto typescript
+- **supertest**: Para ser utilizado juntamente om o Jest
+- **ts-node**: Rodar o projeto em Typescript
+- **typescript**: Pactoe para a linguagem Typescript
 
 ### Roadmap _ou_ Organização ☑️
 
