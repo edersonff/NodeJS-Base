@@ -6,6 +6,7 @@ import express from "express";
 import logger from "./Logs/logger";
 import conn from "./DB/conn";
 import { router } from "./Routes/index.routes";
+import tasks from "./Tasks";
 
 const { PORT, DEBUG } = process.env;
 
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
+
+tasks();
 
 conn
   .then(async (connection) => {

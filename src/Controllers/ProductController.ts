@@ -1,59 +1,47 @@
 import { Request, Response } from "express";
-import { Product } from "../Entities/Product";
-import conn from "../DB/conn";
-import Controller from "./Controller";
-import { Repository } from "typeorm";
-import logger from "../Logs/logger";
+import { getRepository } from "typeorm";
+import { Product } from "../Entity/product.entity";
 import { putProduct } from "../Schemas/Product/put.schema";
 
-export default class ProductController extends Controller {
-  private repository: Repository<Product>;
-  constructor() {
-    super();
-    this.repository = this.connection.getRepository(Product);
+export default class ProductController {
+  static async index(req: Request, res: Response) {
+    const productRepository = getRepository(Product);
+    const products = await productRepository.find();
+    res.send(products);
   }
 
-  index(req: Request, res: Response) {
-    const repo = this.repository;
-    repo.find().then((products) => {
-      res.send(products);
+  static async get(req: Request, res: Response) {
+    const productRepository = getRepository(Product);
+    const product = await productRepository.findOne({
+      where: { code: Number(req.params.code) },
     });
+    if (!product) return res.status(404).send("Produto não encontrado");
+    res.send(product);
   }
-  get(req: Request, res: Response) {
-    const repo = this.repository;
-    repo
-      .findOne({
-        where: {
-          id: Number(req.params.id),
-        },
-      })
-      .then((product) => {
-        res.send(product);
-      });
-  }
-  async put(req: Request, res: Response) {
-    const repo = this.repository;
-    const body = await putProduct.validateAsync(req.body);
 
-    repo
-      .update(
-        {
-          id: Number(req.params.id),
-        },
-        body
-      )
-      .then((product) => {
-        res.send(product);
-      });
+  static async update(req: Request, res: Response) {
+    const productRepository = getRepository(Product);
+    const product = await productRepository.findOne({
+      where: { code: Number(req.params.code) },
+    });
+    if (!product) return res.status(404).send("Produto não encontrado");
+
+    const { error } = putProduct.validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    productRepository.merge(product, req.body);
+    const updatedProduct = await productRepository.save(product);
+    res.send(updatedProduct);
   }
-  async destroy(req: Request, res: Response) {
-    const repo = this.repository;
-    repo
-      .delete({
-        id: Number(req.params.id),
-      })
-      .then((product) => {
-        res.send(product);
-      });
+
+  static async destroy(req: Request, res: Response) {
+    const productRepository = getRepository(Product);
+    const product = await productRepository.findOne({
+      where: { code: Number(req.params.code) },
+    });
+    if (!product) return res.status(404).send("Produto não encontrado");
+
+    await productRepository.delete(product.id);
+    res.send("Produto deletado com sucesso");
   }
 }
