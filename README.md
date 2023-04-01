@@ -67,11 +67,12 @@ Desafio proposto pela **Coodesh** como desafio do da empresa Grupo fácil(Tech C
 - [✖️] Criação inicial das rotas principais
 - [✖️] Criação dos controllers principais(2)
 - [⬛] Criar tipos para entrada e saida das rotas (opcional)
+- [⬛] Configurar banco MongoDB com TypeORM
 - [⬛] Alinhar projeto com documentação do Open Food Facts
 - [⬛] Importação de dados apartir da rota
 - [⬛] Descompatar e ler os arquivos limitando-os
 - [⬛] Sistema de falha do sync dos produtos (opcional)
-- [⬛] Criação dos testes automatizados (opcional)
+- [⬛] Criação dos testes unitarios (opcional)
 - [⬛] Utilização de Forms/Schemas
 - [⬛] Criação de Middlewares para tratar informações
 - [⬛] Criação de Parte Front-end -> Possibilidade de utilizar NextJS (opcional)
@@ -88,5 +89,8 @@ Alguns problemas para achar o folder correto do sqlite e dos logs mas foi tranqu
 Tive alguns problemas para conectar o TypeORM mas agora está tudo funcionando <br/>
 Principalmente pelo formato do arquivo(.gz) imagino que precise ser descompactado e depois lido, por agora imagino que precisariamos utilizar a url https://challenges.coode.sh/food/data/json/{code} para os arquivos, não gostaria também de utilizar o arquivo index.txt dinamicamente(desnecessario para esse projeto). <br/>
 Estou tentando adiantar grande parte do projeto o quanto antes para não ter problemas com os adicionais(que eu gostaria de fazer)<br/>
+Talvez haja a necessidade de baixar os arquivos para descompactar, estou vendo se adm-zip ou gunzip-file sejá mais apropriado para após ter sido baixado ou se há necessidade de baixar </br>
+Não consegui fazer por nenhuma biblioteca, apenas com ferramentas nativas do NodeJS por problemas com o tamanho do buffer e problemas para conversão em json ou string, a forma encontrada foi salvar products.json.gz, descompactar para products.json e ler linha por linha. Antes dessa última solução não foi possivel limitar o buffer diretamente para o numero de string pois a função JSON.parse não conseguia formatar por necessariamente um começo ou fim, uma opção que vem a cabeça agora seria eliminar última linha incompleta/separar cada json por linha e ir formatando um por um. </br>
+Percebi que será extremamente importante utilizar um banco NoSQL pelo formato dos dados serem dinamicos, será o proximo passo para eu continuar o meu progresso
 
 <p align="right">(<a href="#readme-top">Subir</a>)</p>
