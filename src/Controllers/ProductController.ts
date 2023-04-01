@@ -13,7 +13,11 @@ export default class ProductController {
   static async get(req: Request, res: Response) {
     const productRepository = getRepository(Product);
     const product = await productRepository.findOne({
-      where: { code: Number(req.params.code) },
+      where: {
+        data: {
+          code: Number(req.params.code),
+        },
+      },
     });
     if (!product) return res.status(404).send("Produto não encontrado");
     res.send(product);
@@ -22,7 +26,11 @@ export default class ProductController {
   static async update(req: Request, res: Response) {
     const productRepository = getRepository(Product);
     const product = await productRepository.findOne({
-      where: { code: Number(req.params.code) },
+      where: {
+        data: {
+          code: Number(req.params.code),
+        },
+      },
     });
     if (!product) return res.status(404).send("Produto não encontrado");
 
@@ -37,7 +45,11 @@ export default class ProductController {
   static async destroy(req: Request, res: Response) {
     const productRepository = getRepository(Product);
     const product = await productRepository.findOne({
-      where: { code: Number(req.params.code) },
+      where: {
+        data: {
+          code: Number(req.params.code),
+        },
+      },
     });
     if (!product) return res.status(404).send("Produto não encontrado");
 
