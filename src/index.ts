@@ -19,6 +19,7 @@ app.use("/api", router);
 conn
   .then(async (connection) => {
     // await connection.synchronize();
+    logger.info("Successfully connected to database");
     app.listen(PORT, () => {
       if (DEBUG) {
         logger.info("Server started on port 3000");
