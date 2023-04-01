@@ -20,5 +20,5 @@ config.js
 # Ignorar Logs
 src/Logs/*.log
 
-# Ignorar sqlite
-src/data/*.sqlite
+# Ignorar TMP
+**/tmp/*
