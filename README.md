@@ -70,9 +70,10 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 ### Produção 🎥
 
 1. Após já ter gerado a build, que pode ser confirmado se a pasta `/build` existe, digite o comando `npm start` </br>
-_obs: configurar o .env para prod, seguir o exemplo do arquivo prod.env_ 
+   _obs: configurar o .env para prod, seguir o exemplo do arquivo prod.env_
 
-___
+---
+
 ## **Linha de raciocinio**
 
 ### Pacotes 📦
@@ -106,7 +107,8 @@ ___
 - **ts-node**: Rodar o projeto em Typescript
 - **typescript**: Pactoe para a linguagem Typescript
 
-___
+---
+
 ### **Roadmap _ou_ Organização ☑️**
 
 - [✖️] Configuração inicial express
@@ -120,40 +122,40 @@ ___
 - [⬛] Criar tipos para entrada e saida das rotas (opcional)
 - [⬛] ~~Configurar banco MongoDB com TypeORM~~
 - [✖️] Configurar banco MongoDB com Prisma
-- [⬛] Alinhar projeto com documentação do Open Food Facts
+- [⬛] ~~Alinhar projeto com documentação do Open Food Facts~~
 - [✖️] Importação de dados apartir da rota
 - [✖️] Descompatar e ler os arquivos limitando-os
 - [✖️] Sistema de falha do sync dos produtos (opcional)
 - [⬛] Criação dos testes unitarios (opcional)
 - [✖️] Utilização de Forms/Schemas
 - [✖️] Criação de Middlewares para tratar informações
-- [⬛] Criação de Parte Front-end -> Possibilidade de utilizar ~~NextJS~~ ReactJS (opcional)
+- [✖️] Criação de Parte Front-end -> Possibilidade de utilizar ~~NextJS~~ ReactJS (opcional)
 - [⬛] Configuração do Docker (opcional)
 - [⬛] Documentação da api a partir do conceito Open API 3.0 (opcional)
 - [⬛] Testar fluxo para ver se está tudo certo 😋
 
-____
+---
+
 ### **Ideias _ou_ Hipóteses**
 
 <p>
-  Tive alguns problemas pequenos para configurar Typescript no projeto inicialmente
+  Tive alguns problemas pequenos para configurar Typescript no projeto inicialmente.
 </p>
 
 <p>
-  Estou com a ideia de utilizar .sqlite por questão de praticidade 
-</p>
-
-
-<p>
-  Utilizar o pacote dotenv para configurar as váriaveis de ambiente do projeto
+  Estou com a ideia de utilizar .sqlite por questão de praticidade.
 </p>
 
 <p>
-  Alguns problemas para achar o folder correto do sqlite e dos logs mas foi tranquilo arrumar
+  Utilizar o pacote dotenv para configurar as váriaveis de ambiente do projeto.
 </p>
 
 <p>
-  Tive alguns problemas para conectar o TypeORM mas agora está tudo funcionando
+  Alguns problemas para achar o folder correto do sqlite e dos logs mas foi tranquilo arrumar.
+</p>
+
+<p>
+  Tive alguns problemas para conectar o TypeORM mas agora está tudo funcionando.
 </p>
 
 <p>
@@ -161,33 +163,37 @@ ____
 </p>
 
 <p>
-  Estou tentando adiantar grande parte do projeto o quanto antes para não ter problemas com os adicionais(que eu gostaria de fazer)
+  Estou tentando adiantar grande parte do projeto o quanto antes para não ter problemas com os adicionais(que eu gostaria de fazer).
 </p>
 
 <p>
-  Talvez haja a necessidade de baixar os arquivos para descompactar, estou vendo se adm-zip ou gunzip-file sejá mais apropriado para após ter sido baixado ou se há necessidade de baixar
+  Talvez haja a necessidade de baixar os arquivos para descompactar, estou vendo se adm-zip ou gunzip-file sejá mais apropriado para após ter sido baixado ou se há necessidade de baixar.
 </p>
-
 
 <p>
   Não consegui fazer por nenhuma biblioteca, apenas com ferramentas nativas do NodeJS por problemas com o tamanho do buffer e problemas para conversão em json ou string, a forma encontrada foi salvar products.json.gz, descompactar para products.json e ler linha por linha. Antes dessa última solução não foi possivel limitar o buffer diretamente para o numero de string pois a função JSON.parse não conseguia formatar por necessariamente um começo ou fim, uma opção que vem a cabeça agora seria eliminar última linha incompleta/separar cada json por linha e ir formatando um por um.
 </p>
 
 <p>
-  Percebi que será extremamente importante utilizar um banco NoSQL pelo formato dos dados serem dinamicos, será o proximo passo para eu continuar o meu progresso
+  Percebi que será extremamente importante utilizar um banco NoSQL pelo formato dos dados serem dinamicos, será o proximo passo para eu continuar o meu progresso.
 </p>
 
 <p>
-  Após muitos problemas(muitos mesmo) estou partindo para o Linux, gastei varias horas tentando descobrir o do porque o mongodb não estava funcionando e não retornava erro(parava a aplicação inteira), me deseje sorte :)
+  Após muitos problemas(muitos mesmo) estou partindo para o Linux, gastei varias horas tentando descobrir o do porque o mongodb não estava funcionando e não retornava erro(parava a aplicação inteira), me deseje sorte :).
 </p>
 
 <p>
-  Consegui rodar pelo Prisma, porém tive que fazer toda a substituição, aparentemente o TypeORM não estava dando retorno de nenhum erro ou sucessão e ficava preso na tentativa de carregamento (funcionou com mongoose como teste e agora com o prisma) 😨
+  Consegui rodar pelo Prisma, porém tive que fazer toda a substituição, aparentemente o TypeORM não estava dando retorno de nenhum erro ou sucessão e ficava preso na tentativa de carregamento (funcionou com mongoose como teste e agora com o prisma) 😨.
+</p>
+
+<p>
+  Outro problema que ocorreu foi o uso do formato JSON nas queries com a ORM Prisma, provavelmente a forma mais "correta" e sem muito esforço para ser levantado é utilizar o modulo nativo que já está no projeto para rodar as queries no formato "raw".
 </p>
 
 <p align="right">(<a href="#readme-top">Subir</a>)</p>
 
 ### **Off topic**
+
 <p>
   Tomei um baile da TypeORM, não usem junto em nodejs com MongoDB, juro que foi mais de 4 horas de tentativas, até agora o pior.
 </p>
