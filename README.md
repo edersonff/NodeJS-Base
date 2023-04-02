@@ -1,3 +1,7 @@
+<p align="center" style="padding: 5%" >
+  <img src="https://hipsters.jobs/files/pictures/Coodesh-Logo-Vertical.png" width="200px" title="hover text">
+</p>
+
 # Desafio NodeJs Open Food Facts 🍕
 
 <a name="readme-top"></a>
@@ -9,23 +13,34 @@
       <a href="#introdução">Introdução</a>
     </li>
     <li>
+      <a href="#como-rodar-o-projeto">Como rodar o projeto</a>
+      <ul>
+        <li><a href="#env-📄">.ENV</a></li>
+        <li><a href="#dev-🧑‍💻️">Dev</a></li>
+        <li><a href="#buildar-🧱">Buildar</a></li>
+        <li><a href="#produção-🎥">Produção</a></li>
+      </ul>
+    </li>
+    <li>
       <a href="#linha-de-raciocinio">Linha de raciocinio</a>
       <ul>
         <li><a href="#pacotes-📦">Pacotes</a></li>
         <li><a href="#pacotes-dev-💻">Pacotes DEV</a></li>
         <li><a href="#roadmap-ou-organização-☑️">Roadmap -> Organização</a></li>
+        <li><a href="#ideias-ou-hipóteses">Ideias ou Hipóteses</a></li>
+        <li><a href="#off-topic">Off topic</a></li>
       </ul>
     </li>
   </ol>
 </details>
 
-## Introdução
+## **Introdução**
 
 Desafio proposto pela **Coodesh** como desafio do da empresa Grupo fácil(Tech Challenge) para criação de uma API RESTFul no qual utiliza dados e informações do projeto **Open Food Facts**.
 
 ## **Como rodar o projeto**
 
-### .ENV 📄
+### ENV 📄
 
 ```
 PORT=3000 # -> Porta que a aplicação irá rodar
@@ -175,4 +190,8 @@ ____
 ### **Off topic**
 <p>
   Tomei um baile da TypeORM, não usem junto em nodejs com MongoDB, juro que foi mais de 4 horas de tentativas, até agora o pior.
+</p>
+
+<p>
+  A mémoria do meu Linux está indo emborá por causa dos arquivos dentro do TMP das importações, chegou a 0bytes livres.
 </p>
