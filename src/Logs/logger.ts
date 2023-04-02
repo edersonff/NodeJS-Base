@@ -1,7 +1,7 @@
 import { createLogger, transports, format } from "winston";
 const { LOG_LEVEL, LOGS } = process.env;
 
-const logFolder = "./src/logs/";
+const logFolder = "./src/Logs/";
 const logger = createLogger({
   level: LOG_LEVEL,
   format: format.json(),
