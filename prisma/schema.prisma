@@ -17,8 +17,8 @@ enum ProductStatus {
 }
 
 model Product {
-  id          String          @map("_id") @id @default(cuid())
-  data        Json
-  imported_t  Int
-  status      ProductStatus   @default(draft)
+  id         String        @id @default(cuid()) @map("_id")
+  data       Json
+  imported_t String
+  status     ProductStatus @default(draft)
 }

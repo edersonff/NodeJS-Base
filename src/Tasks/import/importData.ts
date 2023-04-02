@@ -5,8 +5,10 @@ import fs from "fs";
 import readline from "readline";
 import https from "https";
 import { PrismaClient, ProductStatus } from "@prisma/client";
+import moment from "moment";
 
 const prisma = new PrismaClient();
+const { LOGS } = process.env;
 
 const url = (param: string) =>
   "https://challenges.coode.sh/food/data/json/" + param;
@@ -27,15 +29,20 @@ const saveFile = async (fileUrl: any) => {
 };
 
 export default async function importData() {
+  if (LOGS) {
+    logger.info("Importing data...");
+  }
+
   if (!fs.existsSync(__dirname + "/tmp/")) {
     fs.mkdirSync(__dirname + "/tmp/");
   }
 
   await prisma.product.deleteMany();
+
   products.map(async (product) => {
     try {
       const path = await saveFile(url(product));
-      const time = new Date().getTime();
+      const time = moment().toISOString();
 
       let data = fs.readFileSync(path);
       data = zlib.gunzipSync(data);
@@ -71,7 +78,9 @@ export default async function importData() {
       fs.rmSync(path);
       fs.rmSync(jsonPath);
     } catch (err) {
-      logger.error("Erro importando dados(" + product + "): " + err);
+      if (LOGS) {
+        logger.error("Erro importando dados(" + product + "): " + err);
+      }
     }
   });
 }
