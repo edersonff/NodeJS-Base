@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
 tasks();
-  app.listen(PORT, () => {
-    if (DEBUG) {
-      logger.info("Server started on port 3000");
-    }
-  });
+app.listen(PORT, () => {
+  if (DEBUG) {
+    logger.info("Server started on port 3000");
+  }
+});
