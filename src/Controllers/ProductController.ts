@@ -1,59 +1,60 @@
-import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import { Product } from "../Entity/product.entity";
-import { putProduct } from "../Schemas/Product/put.schema";
+import { PrismaClient } from '@prisma/client'
+import { Request, Response } from 'express'
+import { putProduct } from '../Schemas/Product/put.schema'
+
+const prisma = new PrismaClient()
 
 export default class ProductController {
   static async index(req: Request, res: Response) {
-    const productRepository = getRepository(Product);
-    const products = await productRepository.find();
-    res.send(products);
+    const products = await prisma.product.findMany()
+    res.send(products)
   }
 
   static async get(req: Request, res: Response) {
-    const productRepository = getRepository(Product);
-    const product = await productRepository.findOne({
-      where: {
-        data: {
+    const product = await prisma.product.findFirst({
+      where: {   
+        data: JSON.parse(JSON.stringify({
           code: Number(req.params.code),
-        },
+        })),
       },
-    });
-    if (!product) return res.status(404).send("Produto não encontrado");
-    res.send(product);
+    })
+    if (!product) return res.status(404).send("Produto não encontrado")
+    res.send(product)
   }
 
   static async update(req: Request, res: Response) {
-    const productRepository = getRepository(Product);
-    const product = await productRepository.findOne({
-      where: {
-        data: {
+    const product = await prisma.product.findFirst({
+      where: {    
+        data: JSON.parse(JSON.stringify({
           code: Number(req.params.code),
-        },
+        })),
       },
-    });
-    if (!product) return res.status(404).send("Produto não encontrado");
+    })
+    if (!product) return res.status(404).send("Produto não encontrado")
 
-    const { error } = putProduct.validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    const { error } = putProduct.validate(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
 
-    productRepository.merge(product, req.body);
-    const updatedProduct = await productRepository.save(product);
-    res.send(updatedProduct);
+    const updatedProduct = await prisma.product.update({
+      where: { id: product.id },
+      data: req.body,
+    })
+    res.send(updatedProduct)
   }
 
   static async destroy(req: Request, res: Response) {
-    const productRepository = getRepository(Product);
-    const product = await productRepository.findOne({
-      where: {
-        data: {
+    const product = await prisma.product.findFirst({
+      where: {    
+        data: JSON.parse(JSON.stringify({
           code: Number(req.params.code),
-        },
+        })),
       },
-    });
-    if (!product) return res.status(404).send("Produto não encontrado");
+    })
+    if (!product) return res.status(404).send("Produto não encontrado")
 
-    await productRepository.delete(product.id);
-    res.send("Produto deletado com sucesso");
+    await prisma.product.delete({
+      where: { id: product.id },
+    })
+    res.send("Produto deletado com sucesso")
   }
 }

@@ -4,33 +4,35 @@ import zlib from "zlib";
 import fs from "fs";
 import readline from "readline";
 import https from "https";
-// @ts-ignore
-import { parse } from "bfj";
-// @ts-ignore
-import { getRepository } from "typeorm";
-import { Product } from "../../Entity/product.entity";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient()
 
 const url = (param: string) =>
   "https://challenges.coode.sh/food/data/json/" + param;
 
 const saveFile = async (fileUrl: any) => {
   const path = __dirname + "/tmp/" + fileUrl.split("/").pop();
-  // const file = fs.createWriteStream(path);
-  // await new Promise((resolve, reject) => {
-  //   https.get(fileUrl, function (response) {
-  //     response.pipe(file);
-  //     file.on("finish", function () {
-  //       file.close();
-  //       resolve(path);
-  //     });
-  //   });
-  // });
+  if (!fs.existsSync(__dirname + "/tmp/")){
+    fs.mkdirSync(__dirname + "/tmp/");
+  }
+  const file = fs.createWriteStream(path);
+  await new Promise((resolve, reject) => {
+    https.get(fileUrl, function (response) {
+      response.pipe(file);
+      file.on("finish", function () {
+        file.close();
+        resolve(path);
+      });
+    });
+  });
   return path;
 };
 
 export default async function importData() {
   const product = products[0];
-  const productRepository = getRepository(Product);
+  // delete all data
+  await prisma.product.deleteMany();
   // products.map((product) => {
   try {
     const path = await saveFile(url(product));
@@ -50,9 +52,7 @@ export default async function importData() {
     });
 
     let count = 0;
-    let importData: {
-      [key: string]: any;
-    } = [];
+    let importData = [];
     for await (const line of rl) {
       if (count === 100) {
         break;
@@ -63,7 +63,9 @@ export default async function importData() {
       importData.push(JSON.parse(line));
     }
 
-    await productRepository.insert(importData);
+    await prisma.product.createMany({
+      data: importData,
+    });
 
     // fs.rmSync(path);
   } catch (err) {

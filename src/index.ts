@@ -4,7 +4,6 @@ config();
 
 import express from "express";
 import logger from "./Logs/logger";
-import conn from "./DB/conn";
 import { router } from "./Routes/index.routes";
 import tasks from "./Tasks";
 
@@ -18,17 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
 tasks();
-
-conn
-  .then(async (connection) => {
-    // await connection.synchronize();
-    logger.info("Successfully connected to database");
-    app.listen(PORT, () => {
-      if (DEBUG) {
-        logger.info("Server started on port 3000");
-      }
-    });
-  })
-  .catch((err) => {
-    logger.error(`Failed to connect to database: ${err}`);
+  app.listen(PORT, () => {
+    if (DEBUG) {
+      logger.info("Server started on port 3000");
+    }
   });
