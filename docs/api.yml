@@ -1,5 +1,197 @@
 openapi: 3.0.1
 info:
-  title: NodeJs Challenge 20200902
-  description: CRUD Products
+  title: Desafio NodeJS Open Food Facts
+  description: API para o desafio de NodeJS da Open Food Facts
   version: "0.1"
+  contact: 
+    name: Ederson Franzen Fagundes
+    email: edersonff_@hotmail.com.br
+    url: "#"
+server:
+  - url: 'http://localhost:3000/',
+    description: 'Local server'
+tags:
+  - name: Prisma
+  - name: Open Food Facts
+  - name: MongoDB
+  - name: Coodesh
+  - name: Desafio
+  - name: NodeJS
+paths:
+  "/api":
+    get:
+      tags:
+        - name: DB status
+        - name: Server status
+        - name: Tasks status
+      description: Retorno geral do status do servidor
+      operationId: Index
+      responses:
+        200:
+          description: Status do servidor,
+          content:
+            'application/json':
+            example:
+              up_time: 1
+              next_import: 1
+              db_write: true
+              db_read: true
+  "/api/products":
+    get:
+      tags:
+        - name: List Products
+      description: Lista os produtos
+      operationId: ProductIndex
+      parameters:
+        - name: index
+          in: query
+          schema:
+            type: number
+          description: página que úsuario está
+        - name: limit
+          in: query
+          schema:
+            type: number
+          description: limita a quantidade da listagem
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: campo do status do produto
+      responses:
+        200:
+          description: Lista dos produtos,
+          content:
+            'application/json':
+            schema:
+              type: array
+              items:
+                $ref: #/components/schemas/Product
+
+  "/api/products/:code":
+    get:
+      tags:
+        - name: Show Product
+      description: Exibe produto
+      operationId: ProductShow
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          description: campo do código do produto
+      responses:
+        200:
+          description: exibe um produto,
+          content:
+            'application/json':
+            schema:
+              $ref: #/components/schemas/Product
+        404:
+          description: não achou produto,
+          content:
+            'application/json':
+            schema:
+              type: string
+              example: Produto não encontrado
+    put:
+      tags:
+        - name: Update Product
+      description: Atualiza produto
+      operationId: ProductUpdate
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          description: campo do código do produto
+        - name: data
+          in: body
+          schema:
+              $ref: #/components/schemas/data
+          description: data do produto
+        - name: imported_t
+          in: body
+          schema:
+            type: string
+          description: horário de importação
+        - name: status
+          in: body
+          schema:
+            $ref: #/components/schemas/status
+          description: status do produto
+      responses:
+        200:
+          description: exibe produto editado,
+          content:
+            'application/json':
+            schema:
+              $ref: #/components/schemas/Product
+        404:
+          description: não achou produto,
+          content:
+            'application/json':
+            schema:
+              type: string
+              example: Produto não encontrado
+        400:
+          description: má requisição,
+          content:
+            'application/json':
+            schema:
+              type: string
+    delete:
+      tags:
+        - name: Delete Product
+      description: Excluir produto
+      operationId: ProductDestroy
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          description: campo do código do produto
+      responses:
+        200:
+          description: exibe produto editado,
+          content:
+            'application/json':
+            schema:
+              type: string
+              example: Produto deletado com sucesso
+        404:
+          description: não achou produto,
+          content:
+            'application/json':
+            schema:
+              type: string
+              example: Produto não encontrado
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: clfziybnd0000fxyd7j4lin7q
+        data:
+          $ref: #/components/schemas/data
+        imported_t:
+          type: string
+          example: '2023-04-02T14:55:19.787Z'
+        status: 
+          $ref: #/components/schemas/status
+    data:
+      type: object
+    error:
+      type: string
+      example: Produto não encontrado
+    sucess:
+      type: string
+      example: Produto deletado com sucesso
+    status: 
+      type: string
+      enum: 
+        - draft
+        - trash
+        - published
