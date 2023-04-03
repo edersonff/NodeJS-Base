@@ -1,6 +1,6 @@
 {
-  "name": "grupo-facil-api",
-  "description": "## Introdução",
+  "name": "desafio-nodejs-open-food-facts",
+  "description": "Desafio NodeJS Open Food Facts",
   "version": "1.0.0",
   "main": "build/index.js",
   "directories": {
