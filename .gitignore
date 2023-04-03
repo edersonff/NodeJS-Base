@@ -22,3 +22,6 @@ src/Logs/*.log
 
 # Ignorar TMP
 **/tmp/*
+
+# Testes
+coverage/
