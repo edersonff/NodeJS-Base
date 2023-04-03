@@ -6,6 +6,8 @@ import express from "express";
 import logger from "./Logs/logger";
 import { router } from "./Routes/index.routes";
 import tasks from "./Tasks";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger_output.json";
 
 const { PORT, DEBUG } = process.env;
 
@@ -25,6 +27,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/api", router);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 tasks();
 app.listen(PORT, () => {
