@@ -27,7 +27,9 @@ app.use(function (req, res, next) {
 });
 
 app.use("/api", router);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if (DEBUG) {
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+}
 
 tasks();
 app.listen(PORT, () => {
