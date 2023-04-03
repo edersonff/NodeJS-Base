@@ -78,16 +78,21 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 
 ### Pacotes 📦
 
+- **@prisma/client**: ORM utilizada para substituir a typeorm
 - **body-parser**: Middleware para poder manipular o corpo da requisição(req.body).
 - **dotenv**: Configurar informações locais.
 - **express**: Framework utilizado para construção da API.
 - **helmet**: Configurar os Headers da requisição.
 - **joi**: Schemas para NodeJS.
+- **moment**: Para formatação de datas-horários
+- **mongodb**: Modulo nativo do MongoDB
 - **node-cron**: Utilizado para agendar tarefas.
-- **sqlite3**: Banco utilizado nesse projeto.
-  Seria mais uma forma de facilidade para testes, ideia futura é criar uma branch com configurações de outros bancos como exemplo.
-- **typeorm**: Orm que foi utilizada no projeto.
-  Não sou tão familiarizado com essa ORM(apenas em projetos nestJS), por isso decidi utiliza-ló aqui.
+- **swagger-autogen**: Gerar automaticamente arquivo swagger configurado com as rotas.
+- **swagger-ui-express**: Exbir Swagger com express
+- ~~**sqlite3**: Banco utilizado nesse projeto.
+  Seria mais uma forma de facilidade para testes, ideia futura é criar uma branch com configurações de outros bancos como exemplo.~~
+- ~~**typeorm**: Orm que foi utilizada no projeto.
+  Não sou tão familiarizado com essa ORM(apenas em projetos nestJS), por isso decidi utiliza-ló aqui.~~
 - **winston**: Utilizado para controle de Logs.
   Não 100% necessário para o projeto, mas útil.
 
@@ -104,6 +109,7 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 - **prettier**: Formatação e organização de código
 - **rimraf**: Para fazer a build do projeto typescript
 - **supertest**: Para ser utilizado juntamente om o Jest
+- **ts-jest**: Rodar os testes em Typescript
 - **ts-node**: Rodar o projeto em Typescript
 - **typescript**: Pactoe para a linguagem Typescript
 
