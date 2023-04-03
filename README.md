@@ -119,7 +119,7 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 - [✖️] Criação de Entidade/Model Product
 - [✖️] Criação inicial das rotas principais
 - [✖️] Criação dos controllers principais(2)
-- [⬛] Criar tipos para entrada e saida das rotas (opcional)
+- [⬛] ~~Criar tipos para entrada e saida das rotas~~
 - [⬛] ~~Configurar banco MongoDB com TypeORM~~
 - [✖️] Configurar banco MongoDB com Prisma
 - [⬛] ~~Alinhar projeto com documentação do Open Food Facts~~
@@ -131,7 +131,7 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 - [✖️] Criação de Middlewares para tratar informações
 - [✖️] Criação de Parte Front-end -> Possibilidade de utilizar ~~NextJS~~ ReactJS (opcional)
 - [⬛] Configuração do Docker (opcional)
-- [⬛] Documentação da api a partir do conceito Open API 3.0 (opcional)
+- [✖️] Documentação da api a partir do conceito Open API 3.0 (opcional)
 - [⬛] Testar fluxo para ver se está tudo certo 😋
 
 ---
