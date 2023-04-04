@@ -14,5 +14,5 @@
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true
   },
-  "exclude": ["tests/**/*", "jest.config.js", "node_modules", "build"]
+  "exclude": ["tests/**/*", "jest.config.js", "node_modules", "build", "coverage"]
 }
