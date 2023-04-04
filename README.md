@@ -19,6 +19,7 @@
         <li><a href="#dev-🧑‍💻️">Dev</a></li>
         <li><a href="#buildar-🧱">Buildar</a></li>
         <li><a href="#produção-🎥">Produção</a></li>
+        <li><a href="#docker-🐳">Docker</a></li>
       </ul>
     </li>
     <li>
@@ -59,18 +60,34 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 1. Abra um terminal na pasta do projeto e digite: `yarn install` caso utilize yarn, se não `npm i`
 2. Digite `yarn prepare` ou `npm run prepare` para utilizar o Husky
 3. Copie o .env e certifique-se de configurar as váriaveis para o seu ambiente
-4. E por fim para rodar o projeto utilize `yarn dev` ou `npm run dev`
+4. Digite `npx prisma generate` para utilizar preparar o Prisma
+5. E por fim para rodar o projeto utilize `yarn dev` ou `npm run dev`
 
 ### Buildar 🧱
 
 1. Verifique se os pacotes estão instalados utilizando os comando `yarn install` ou também `npm i`
 2. Utilize `npm run build` para buildar a aplicação
-3. E por fim mas não menos importante `npm run start` para rodar a aplicação
+3. Digite `npx prisma generate` para utilizar preparar o Prisma
+4. E por fim mas não menos importante `npm run start` para rodar a aplicação
 
 ### Produção 🎥
 
 1. Após já ter gerado a build, que pode ser confirmado se a pasta `/build` existe, digite o comando `npm start` </br>
    _obs: configurar o .env para prod, seguir o exemplo do arquivo prod.env_
+
+### Docker 🐳
+
+1. Altere o arquivo `DockerFile` os campos `WORKDIR` e `COPY` para o diretorio do projeto e a porta no comando expose, como no exemplo:
+
+```
+FROM node:16-alpine
+WORKDIR /usr/desafio # <--
+COPY . /usr/desafio # <--
+EXPOSE 8080 # <--
+```
+
+2. Builde o app com o comando `docker build -t {nome} .`
+3. Rode o comando `docker run --publish 8080:8080 {nome}` para iniciar a imagem já pronta
 
 ---
 
@@ -132,13 +149,13 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 - [✖️] Importação de dados apartir da rota
 - [✖️] Descompatar e ler os arquivos limitando-os
 - [✖️] Sistema de falha do sync dos produtos (opcional)
-- [⬛] Criação dos testes unitarios (opcional)
+- [✖️] Criação dos testes unitarios (opcional)
 - [✖️] Utilização de Forms/Schemas
 - [✖️] Criação de Middlewares para tratar informações
 - [✖️] Criação de Parte Front-end -> Possibilidade de utilizar ~~NextJS~~ ReactJS (opcional)
-- [⬛] Configuração do Docker (opcional)
+- [✖️] Configuração do Docker (opcional)
 - [✖️] Documentação da api a partir do conceito Open API 3.0 (opcional)
-- [⬛] Testar fluxo para ver se está tudo certo 😋
+- [✖️] Testar fluxo para ver se está tudo certo 😋
 
 ---
 
@@ -194,6 +211,9 @@ LOGS=true -> # Para ativar ou desativar parte dos logs
 
 <p>
   Outro problema que ocorreu foi o uso do formato JSON nas queries com a ORM Prisma, provavelmente a forma mais "correta" e sem muito esforço para ser levantado é utilizar o modulo nativo que já está no projeto para rodar as queries no formato "raw".
+</p>
+<p>
+  Enfrentei problemas para rodar o Docker no Linux porém funcionou após formatação e troca para sitema Ubuntu 22(fiz a formatação por outro motivo).
 </p>
 
 <p align="right">(<a href="#readme-top">Subir</a>)</p>
