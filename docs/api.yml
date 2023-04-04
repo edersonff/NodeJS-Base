@@ -3,13 +3,13 @@ info:
   title: Desafio NodeJS Open Food Facts
   description: API para o desafio de NodeJS da Open Food Facts
   version: "0.1"
-  contact: 
+  contact:
     name: Ederson Franzen Fagundes
     email: edersonff_@hotmail.com.br
     url: "#"
 server:
-  - url: 'http://localhost:3000/',
-    description: 'Local server'
+  - url: "http://localhost:3000/"
+    description: "Local server"
 tags:
   - name: Prisma
   - name: Open Food Facts
@@ -30,7 +30,7 @@ paths:
         200:
           description: Status do servidor,
           content:
-            'application/json':
+            "application/json":
             example:
               up_time: 1
               next_import: 1
@@ -62,7 +62,7 @@ paths:
         200:
           description: Lista dos produtos,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: array
               items:
@@ -84,13 +84,13 @@ paths:
         200:
           description: exibe um produto,
           content:
-            'application/json':
+            "application/json":
             schema:
               $ref: #/components/schemas/Product
         404:
           description: não achou produto,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: string
               example: Produto não encontrado
@@ -108,7 +108,7 @@ paths:
         - name: data
           in: body
           schema:
-              $ref: #/components/schemas/data
+            $ref: #/components/schemas/data
           description: data do produto
         - name: imported_t
           in: body
@@ -124,20 +124,20 @@ paths:
         200:
           description: exibe produto editado,
           content:
-            'application/json':
+            "application/json":
             schema:
               $ref: #/components/schemas/Product
         404:
           description: não achou produto,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: string
               example: Produto não encontrado
         400:
           description: má requisição,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: string
     delete:
@@ -155,14 +155,14 @@ paths:
         200:
           description: exibe produto editado,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: string
               example: Produto deletado com sucesso
         404:
           description: não achou produto,
           content:
-            'application/json':
+            "application/json":
             schema:
               type: string
               example: Produto não encontrado
@@ -178,8 +178,8 @@ components:
           $ref: #/components/schemas/data
         imported_t:
           type: string
-          example: '2023-04-02T14:55:19.787Z'
-        status: 
+          example: "2023-04-02T14:55:19.787Z"
+        status:
           $ref: #/components/schemas/status
     data:
       type: object
@@ -189,9 +189,9 @@ components:
     sucess:
       type: string
       example: Produto deletado com sucesso
-    status: 
+    status:
       type: string
-      enum: 
+      enum:
         - draft
         - trash
         - published

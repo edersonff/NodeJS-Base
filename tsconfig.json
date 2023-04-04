@@ -12,12 +12,7 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   },
-  "exclude": [
-    "tests/**/*",
-    "jest.config.js",
-    "node_modules",
-    "build"
-  ]
+  "exclude": ["tests/**/*", "jest.config.js", "node_modules", "build"]
 }
