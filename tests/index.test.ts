@@ -2,7 +2,7 @@ import request from "supertest";
 // @ts-ignore
 import { apiURL } from "./config.ts";
 
-test("GET /api should return correct response", async () => {
+test("GET /api should return up_time, next_import, db_write, db_read", async () => {
   return request(apiURL)
     .get("/")
     .set("Accept", "application/json")
