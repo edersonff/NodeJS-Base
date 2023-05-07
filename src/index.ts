@@ -8,6 +8,7 @@ import { router } from "./Routes/index.routes";
 import tasks from "./Tasks";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger_output.json";
+import { headers } from "./Middlewares/common/Headers";
 
 const { PORT, DEBUG } = process.env;
 
@@ -16,17 +17,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(headers);
 
 app.use("/api", router);
+
 if (DEBUG) {
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }
